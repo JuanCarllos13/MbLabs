@@ -16,7 +16,7 @@ export default {
     title: '#363f5F', 
     text: '#969CB2', 
     text_dark: '#000000',
-    background: '#ccc'
+    background: '#F0F2F5'
   },
   fonts: {
     regular: 'Poppins_400Regular', 

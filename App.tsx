@@ -1,9 +1,7 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { Home } from './src/pages/Home';
 import { ThemeProvider } from 'styled-components'
 import theme from './src/global/styles/theme'
-import AppLoading from 'expo-app-loading'
+import {AppRoutes} from './src/routes/app.routes'
 import {
   useFonts,
   Poppins_400Regular,
@@ -11,8 +9,7 @@ import {
   Poppins_700Bold
 } from '@expo-google-fonts/poppins'
 import * as SplashScreen from 'expo-splash-screen';
-import { Register } from './src/pages/Register';
-
+import { NavigationContainer } from '@react-navigation/native'
 
 export default function App() {
   SplashScreen.preventAutoHideAsync();
@@ -28,8 +25,9 @@ export default function App() {
   SplashScreen.hideAsync();
   return (
     <ThemeProvider theme={theme}>
-      {/* <Home /> */}
-      <Register/>
+      <NavigationContainer>
+          <AppRoutes />
+        </NavigationContainer>
     </ThemeProvider>
   );
 }

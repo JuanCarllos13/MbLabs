@@ -1,5 +1,6 @@
 import { RFValue } from "react-native-responsive-fontsize";
 import styled from "styled-components/native";
+import { TextInputMask } from 'react-native-masked-text'
 
 
 export const Container = styled.View`
@@ -32,4 +33,12 @@ export const Form = styled.View`
   padding: 24px;
 `
 export const Fields = styled.View`
+`
+
+export const TicketTypes = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+
+  margin-top: 8px;
+  margin-bottom: 16px;
 `
