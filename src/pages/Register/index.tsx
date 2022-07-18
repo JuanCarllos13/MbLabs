@@ -19,6 +19,7 @@ import {
 import { Button } from "../../components/Forms/Button";
 import { InputCell } from "../../components/Forms/InputCell";
 import { InputSmall } from "../../components/Forms/inputSmall";
+import {useNavigation} from '@react-navigation/native'
 
 export type FormData = {
   Organization: string;
@@ -28,6 +29,10 @@ export type FormData = {
   amount: string;
   cell: string
 
+}
+
+type NavigationProps = {
+  navigate:(screen:string) => void;
 }
 
 const schema = Yup.object().shape({
@@ -64,6 +69,8 @@ export function Register() {
     name: 'Categoria',
   })
 
+  const navigation = useNavigation<NavigationProps>()
+
   const {
     control,
     handleSubmit,
@@ -97,8 +104,6 @@ export function Register() {
       ticket: form.ticket
     }
 
-    console.log("Entrou aqui", newTicket)
-
     try {
       const dataKey = "@mblabs:ticket"
       const data = await AsyncStorage.getItem(dataKey)
@@ -116,7 +121,7 @@ export function Register() {
         key: 'category',
         name: 'Categoria',
       })
-
+      navigation.navigate("Listagem")
     } catch (err) {
       console.log(err)
       Alert.alert("Não foi possível salvar")

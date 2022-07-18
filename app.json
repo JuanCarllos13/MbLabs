@@ -1,7 +1,8 @@
 {
   "expo": {
-    "name": "mbLabs",
-    "slug": "mbLabs",
+    "name": "mblabsevent",
+    "slug": "mblabsevent",
+    "scheme": "mblabsevent",
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"

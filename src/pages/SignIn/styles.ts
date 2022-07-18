@@ -54,3 +54,13 @@ export const FooterWrapper = styled.View`
   padding: 0 32px;
   justify-content: space-between;
 `
+export const Image = styled.Image`
+    width: 120px;
+    height: 68px;
+`
+
+
+export const ActivityIndicator = styled.ActivityIndicator`
+  color:${({ theme }) => theme.colors.shape};
+  margin-top: 18px;
+`

@@ -10,7 +10,6 @@ interface Props extends TextInputProps {
   control: Control | any;
   name: string ;
   error: string | undefined ;
-  type?: string
 }
 
 export function InputSmall({control, error, name, ...rest}: Props) {

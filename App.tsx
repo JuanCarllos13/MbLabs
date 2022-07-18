@@ -1,7 +1,8 @@
 import React from 'react';
+import {ActivityIndicator} from 'react-native'
+
 import { ThemeProvider } from 'styled-components'
 import theme from './src/global/styles/theme'
-import {AppRoutes} from './src/routes/app.routes'
 import {
   useFonts,
   Poppins_400Regular,
@@ -9,7 +10,10 @@ import {
   Poppins_700Bold
 } from '@expo-google-fonts/poppins'
 import * as SplashScreen from 'expo-splash-screen';
-import { NavigationContainer } from '@react-navigation/native'
+
+import { Routes } from './src/routes'
+
+import { AuthProvider, useAuth } from './src/hooks/auth'
 
 export default function App() {
   SplashScreen.preventAutoHideAsync();
@@ -19,15 +23,17 @@ export default function App() {
     Poppins_700Bold
   });
 
-  if (!fontsLoaded) {
-    return null;
+  const {isLoading} = useAuth()
+
+  if (!fontsLoaded || isLoading) {
+    return <ActivityIndicator color={'#FFF'}/>;
   }
   SplashScreen.hideAsync();
   return (
     <ThemeProvider theme={theme}>
-      <NavigationContainer>
-          <AppRoutes />
-        </NavigationContainer>
+      <AuthProvider>
+        <Routes />
+      </AuthProvider>
     </ThemeProvider>
   );
 }

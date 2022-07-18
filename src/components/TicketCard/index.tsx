@@ -11,16 +11,15 @@ import {
   Date
 } from "./styles";
 
-interface CategoryProps {
-  name: string,
-  icon: string
-}
 
 export interface TicketCardProps {
-  title: string,
   amount: string,
-  category: CategoryProps,
+  category: String,
   date: string
+  Organization: string
+  cell: string
+  ticket: string
+  event: string
 }
 
 interface Props {
@@ -28,18 +27,24 @@ interface Props {
 }
 
 export function TicketCart({ data }: Props) {
+  console.log('DATA', data)
+  const category = categories.filter(
+    item => item.key === data.category
+  )[0]
+
+
   return (
     <Container>
-      <Title>{data.title}</Title>
-
+      <Title>{data.event}</Title>
+     
       <Amount>
         {data.amount}
       </Amount>
 
       <Footer>
         <Category>
-        <Icon name={data.category.icon} />
-        <CategoryName>{data.category.name}</CategoryName>
+          <Icon name={category.icon} />
+          <CategoryName>{category.name}</CategoryName>
         </Category>
         <Date>{data.date}</Date>
       </Footer>

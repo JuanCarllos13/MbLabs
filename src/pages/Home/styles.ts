@@ -5,7 +5,7 @@ import {DataListProps} from '.'
 import {FlatList, FlatListProps} from 'react-native'
 
 export const Container = styled.View`
-    flex: 1;
+  flex: 1;
   background-color: ${({ theme }) => theme.colors.background};
 `
 
@@ -15,9 +15,9 @@ export const Header = styled.View`
 
   background-color:  ${({ theme }) => theme.colors.primary};
 
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
-  flex-direction: row;
+  flex-direction: column;
 `
 
 
@@ -33,7 +33,19 @@ export const UserWrapper = styled.View`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+
 `
+
+export const TitleHeader = styled.Text`
+  font-family: ${({ theme }) => theme.fonts.medium};
+  color:  ${({ theme }) => theme.colors.shape};
+  font-size: ${RFValue(30)}px;
+
+  text-align: center;
+
+  margin: 45px;
+`
+
 
 export const Photo = styled.Image`
   width: ${RFValue(48)}px;
@@ -46,6 +58,7 @@ export const User = styled.View`
   margin-left: 17px;
 `
 
+
 export const UserGreeting = styled.Text`
   color: ${({ theme }) => theme.colors.shape};
   font-size: ${RFValue(18)}px;
@@ -56,7 +69,7 @@ export const UserGreeting = styled.Text`
 `
 
 export const UserName = styled.Text`
-   color: ${({ theme }) => theme.colors.shape};
+  color: ${({ theme }) => theme.colors.shape};
   font-size: ${RFValue(18)}px;
   font-weight: 400;
   font-size: 18px;
@@ -84,6 +97,7 @@ export const TicketList = styled(
   FlatList as new(props: FlatListProps<DataListProps>) => FlatList<DataListProps>
   ).attrs({
   showsVerticalScrollIndicator: false
-})`
+})``
 
-`
+
+export const Button = styled.TouchableOpacity``
