@@ -210,8 +210,7 @@ export function Register() {
           <CategorySelect
             category={category}
             setCategory={setCategory}
-            closeCategorySelect={handleCloseCategorySelectModal}
-          />
+            closeCategorySelect={handleCloseCategorySelectModal}/>
         </Modal>
       </Container>
     </TouchableWithoutFeedback>

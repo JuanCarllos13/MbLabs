@@ -5,6 +5,7 @@ import { AuthRoutes } from './auth.routes'
 import { AppRoutes } from './app.routes'
 
 import { useAuth } from '../hooks/auth'
+import { Resume } from "../pages/Resumo";
 
 export function Routes() {
   const { user } = useAuth()

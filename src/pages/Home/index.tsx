@@ -22,9 +22,9 @@ import { useAuth } from '../../hooks/auth'
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useFocusEffect } from "@react-navigation/native";
 import { dateMask } from "../../utils/Mask";
-import { TouchableOpacity } from "react-native";
+import { TouchableOpacity, Modal } from "react-native";
+import { Resume } from "../Resumo";
 
-const Intl = require('react-native-intl');
 
 export interface DataListProps extends TicketCardProps {
   id: string;
@@ -34,6 +34,8 @@ export interface DataListProps extends TicketCardProps {
 export function Home() {
   const { signOut, user } = useAuth()
   const [tickets, setTickets] = useState<DataListProps[]>([])
+  const [infoTicket, setInfoTicket] = useState<DataListProps>()
+  const [infoTicketModalOpen, setInfoTicketModalOpen] = useState(false)
 
 
   async function loadTicket() {
@@ -65,9 +67,16 @@ export function Home() {
     setTickets(ticketFormatted)
   }
 
-  function teste(index: any) {
-    console.log('Entrou no aqui', index)
+  function handleItemTicketInfo(item: any) {
+    console.log('ite', item)
+    setInfoTicket(item)
+    setInfoTicketModalOpen(true)
   }
+
+  function handleCloseItemTicketSelectModal() {
+    setInfoTicketModalOpen(false)
+  }
+
 
   useEffect(() => {
     loadTicket()
@@ -94,7 +103,7 @@ export function Home() {
         </UserWrapper>
 
         <TitleHeader>
-          MbLabsEvent
+          MbLabs-Event
         </TitleHeader>
 
       </Header>
@@ -108,13 +117,21 @@ export function Home() {
           data={tickets}
           keyExtractor={item => item.id}
           renderItem={({ item, index }) => (
-            <TouchableOpacity onPress={() => teste(item)}>
+            <TouchableOpacity onPress={() => handleItemTicketInfo(item)}>
               <TicketCart data={item} />
             </TouchableOpacity>
           )}
         />
 
       </Ticket>
+
+
+      <Modal visible={infoTicketModalOpen}>
+        <Resume
+          data={infoTicket}
+          closeModal={handleCloseItemTicketSelectModal} />
+      </Modal>
+
     </Container>
   )
 }
