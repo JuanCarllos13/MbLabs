@@ -21,6 +21,10 @@ import {
 import { useAuth } from '../../hooks/auth'
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useFocusEffect } from "@react-navigation/native";
+import { dateMask } from "../../utils/Mask";
+import { TouchableOpacity } from "react-native";
+
+const Intl = require('react-native-intl');
 
 export interface DataListProps extends TicketCardProps {
   id: string;
@@ -30,18 +34,7 @@ export interface DataListProps extends TicketCardProps {
 export function Home() {
   const { signOut, user } = useAuth()
   const [tickets, setTickets] = useState<DataListProps[]>([])
-  const data: DataListProps[] = [
-    {
-      id: '1',
-      Organization: "Palestra de Programação",
-      amount: "R$ 12.000,00",
-      category: 'Art',
-      date: "12/12/2022",
-      event: 'Canto',
-      ticket: '1',
-      cell: '(94) 64949-4949'
-    },
-  ]
+
 
   async function loadTicket() {
     const dataKey = "@mblabs:ticket"
@@ -50,12 +43,12 @@ export function Home() {
 
     const ticketFormatted: DataListProps[] =
       tickets.map((item: DataListProps) => {
-        console.log('ENTROU NO MAP')
-
         const amount = Number(item.amount).toLocaleString('pt-BR', {
           style: 'currency',
           currency: 'BRL'
         });
+
+        const date = dateMask(item.date)
 
         return {
           id: item.id,
@@ -65,12 +58,15 @@ export function Home() {
           ticket: item.ticket,
           cell: item.cell,
           category: item.category,
-          date: item.date,
+          date,
         }
       })
-    
-    console.log('ticketFormatted', ticketFormatted)
+
     setTickets(ticketFormatted)
+  }
+
+  function teste(index: any) {
+    console.log('Entrou no aqui', index)
   }
 
   useEffect(() => {
@@ -111,7 +107,11 @@ export function Home() {
         <TicketList
           data={tickets}
           keyExtractor={item => item.id}
-          renderItem={({ item }) => <TicketCart data={item} />}
+          renderItem={({ item, index }) => (
+            <TouchableOpacity onPress={() => teste(item)}>
+              <TicketCart data={item} />
+            </TouchableOpacity>
+          )}
         />
 
       </Ticket>

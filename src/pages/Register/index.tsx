@@ -21,6 +21,8 @@ import { InputCell } from "../../components/Forms/InputCell";
 import { InputSmall } from "../../components/Forms/inputSmall";
 import {useNavigation} from '@react-navigation/native'
 
+
+
 export type FormData = {
   Organization: string;
   event: string,
@@ -167,6 +169,7 @@ export function Register() {
                 placeholder="Data do Evento"
                 keyboardType="numeric"
                 error={errors.Date && errors.Date.message}
+                maxLength={10}
               />
 
               <TicketTypes>

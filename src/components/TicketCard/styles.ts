@@ -11,6 +11,14 @@ export const Container = styled.View`
   margin-bottom: 16px;
 `
 
+export const Header = styled.View`
+  width: 100%;
+
+  justify-content: center;
+  align-items: center;
+`
+
+
 export const Title = styled.Text`
   font-family: ${({ theme }) => theme.fonts.regular};
   font-size: ${RFValue(14)}px;

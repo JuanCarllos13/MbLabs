@@ -8,9 +8,9 @@ import {
   Category,
   Icon,
   CategoryName,
-  Date
+  Date,
+  Header
 } from "./styles";
-
 
 export interface TicketCardProps {
   amount: string,
@@ -27,16 +27,19 @@ interface Props {
 }
 
 export function TicketCart({ data }: Props) {
-  console.log('DATA', data)
   const category = categories.filter(
     item => item.key === data.category
   )[0]
 
-
   return (
     <Container>
+
+      <Header>
+      <Title>{data.Organization}</Title>
+      </Header>
+  
       <Title>{data.event}</Title>
-     
+
       <Amount>
         {data.amount}
       </Amount>
