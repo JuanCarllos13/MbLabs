@@ -76,7 +76,7 @@ export function SignIn() {
           />
 
           {
-            Platform.OS === 'ios' &&
+            Platform.OS === 'ios' && 
             <SignInButton
               title="Entrar com Apple"
               svg={AppleSvg}
